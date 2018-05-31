@@ -10,4 +10,6 @@ An npx CLI utility for auditing the age of installed npm packages.
 npx audit-age
 ```
 
-![audit-age demo](https://raw.githubusercontent.com/jaydenseric/audit-age/master/demo.svg?sanitize=true)
+## Demo
+
+![audit-age demo](https://cdn.rawgit.com/jaydenseric/audit-age/7f272c7/demo.svg)
