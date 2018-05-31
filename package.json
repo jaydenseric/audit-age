@@ -1,0 +1,100 @@
+{
+  "name": "audit-age",
+  "version": "0.1.0",
+  "description": "An npx CLI utility for auditing the age of installed npm packages.",
+  "license": "MIT",
+  "author": {
+    "name": "Jayden Seric",
+    "email": "me@jaydenseric.com",
+    "url": "https://jaydenseric.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaydenseric/audit-age.git"
+  },
+  "homepage": "https://github.com/jaydenseric/audit-age#readme",
+  "bugs": "https://github.com/jaydenseric/audit-age/issues",
+  "keywords": [
+    "npx",
+    "audit",
+    "package",
+    "age"
+  ],
+  "files": [
+    "cli.js"
+  ],
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=8.5",
+    "npm": ">=5.2"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cli-table2": "^0.2.0",
+    "moment": "^2.22.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.5.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.1.2",
+    "prettier": "^1.13.2"
+  },
+  "scripts": {
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier '**/*.md' -l",
+    "test": "npm run lint:eslint && npm run lint:prettier",
+    "prepublishOnly": "npm test",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": "eslint",
+    "*.md": "prettier -l"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "sourceType": "script",
+      "ecmaVersion": 2018
+    },
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "plugins": [
+      "import",
+      "node",
+      "prettier"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:import/recommended",
+      "plugin:node/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "no-console": "off",
+      "require-await": "error",
+      "no-return-await": "error",
+      "arrow-body-style": "error",
+      "prefer-arrow-callback": "error",
+      "curly": [
+        "error",
+        "multi"
+      ],
+      "prefer-destructuring": "error",
+      "import/first": "error",
+      "import/newline-after-import": "error",
+      "import/no-useless-path-segments": "error",
+      "import/order": "error",
+      "prettier/prettier": "error"
+    }
+  },
+  "prettier": {
+    "proseWrap": "never",
+    "singleQuote": true,
+    "semi": false
+  }
+}
