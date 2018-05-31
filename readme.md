@@ -6,9 +6,8 @@ An npx CLI utility for auditing the age of installed npm packages.
 
 ## Usage
 
-```sh
-npx audit-age
-```
+1.  In Terminal, navigate to a Node.js project with a `package.json` file and a populated `node_modules` directory.
+2.  Run `npx audit-age`.
 
 ## Demo
 
