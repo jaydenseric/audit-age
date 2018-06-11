@@ -2,7 +2,7 @@
 
 const { exec } = require('child_process')
 const { promisify } = require('util')
-const Table = require('cli-table2')
+const Table = require('cli-table3')
 const chalk = require('chalk')
 const moment = require('moment')
 
