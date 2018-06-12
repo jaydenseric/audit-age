@@ -8,10 +8,7 @@
     "email": "me@jaydenseric.com",
     "url": "https://jaydenseric.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jaydenseric/audit-age.git"
-  },
+  "repository": "github:jaydenseric/audit-age",
   "homepage": "https://github.com/jaydenseric/audit-age#readme",
   "bugs": "https://github.com/jaydenseric/audit-age/issues",
   "keywords": [
