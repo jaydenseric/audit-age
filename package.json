@@ -1,6 +1,6 @@
 {
   "name": "audit-age",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An npx CLI utility for auditing the age of installed npm packages.",
   "license": "MIT",
   "author": {

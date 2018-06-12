@@ -1,6 +1,6 @@
 # audit-age changelog
 
-## Next
+## 0.1.1
 
 - Updated dependencies.
 - Use [`eslint-config-env`](https://npm.im/eslint-config-env) to simplify ESLint config.
