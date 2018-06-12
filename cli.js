@@ -58,18 +58,23 @@ const clearTableChars = {
   middle: ''
 }
 
-function thresholdFromDate(date) {
-  const msDiff = moment(startTime).diff(date)
-  return thresholds.find(({ ms }) => msDiff < ms)
-}
-
+/**
+ * Audits the age of installed npm packages.
+ * @private
+ */
 async function auditAge() {
   const { stdout: rawTree } = await asyncExec(
-    `npm ls --prod --only production --json`
+    'npm ls --prod --only production --json'
   )
   const tree = JSON.parse(rawTree)
   const lookups = []
-  const recurse = (dependencies, ancestorPath = []) =>
+
+  /**
+   * Recurses dependencies to prepare the report.
+   * @argument {Object[]} dependencies Dependencies nested at the current level.
+   * @argument {string[]} ancestorPath How the dependency is nested.
+   */
+  const recurse = (dependencies, ancestorPath = []) => {
     Object.entries(dependencies).forEach(
       ([name, { version, dependencies }]) => {
         const path = [...ancestorPath, `${name}@${version}`]
@@ -78,7 +83,8 @@ async function auditAge() {
             ({ stdout: rawTimes }) => {
               const times = JSON.parse(rawTimes)
               const published = moment(times[version])
-              const threshold = thresholdFromDate(published)
+              const msDiff = moment(startTime).diff(published)
+              const threshold = thresholds.find(({ ms }) => msDiff < ms)
               threshold.count++
               return {
                 path,
@@ -93,9 +99,11 @@ async function auditAge() {
         if (dependencies) recurse(dependencies, path)
       }
     )
+  }
 
   recurse(tree.dependencies)
 
+  // eslint-disable-next-line no-console
   console.log(`\nFetching ${lookups.length} package ages...\n`)
 
   const list = await Promise.all(lookups)
@@ -127,6 +135,7 @@ async function auditAge() {
     ])
   )
 
+  // eslint-disable-next-line no-console
   console.log(`${packagesTable.toString()}\n\n`)
 
   const summaryTable = new Table({
@@ -146,7 +155,10 @@ async function auditAge() {
     ])
   )
 
+  // eslint-disable-next-line no-console
   console.log(`${summaryTable.toString()}\n`)
+
+  // eslint-disable-next-line no-console
   console.log(
     `Audited ${lookups.length} package ages in ${(new Date() - startTime) /
       1000}s.\n`
