@@ -19,6 +19,7 @@
 - Stop using [`husky`](https://npm.im/husky) and [`lint-staged`](https://npm.im/lint-staged).
 - Removed `package-lock.json` from the `.gitignore` and `.prettierignore` files as it’s disabled in `.npmrc` anyway.
 - Removed `npm-debug.log` from the `.gitignore` file as npm [v4.2.0](https://github.com/npm/npm/releases/tag/v4.2.0)+ doesn’t create it in the current working directory.
+- Updated the package `keywords` field.
 - Removed the package `engines.npm` field.
 - More specific package `bin` field.
 - Improved the package scripts.

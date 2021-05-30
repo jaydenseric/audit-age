@@ -16,7 +16,10 @@
     "npx",
     "audit",
     "package",
-    "age"
+    "dependencies",
+    "age",
+    "esm",
+    "mjs"
   ],
   "files": [
     "cli"
