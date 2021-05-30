@@ -2,6 +2,10 @@
 
 ## Next
 
+### Major
+
+- Updated Node.js support to `^12.20 || >= 14.13`.
+
 ### Minor
 
 - Setup [GitHub Sponsors funding](https://github.com/sponsors/jaydenseric):
@@ -13,6 +17,7 @@
 - Stop using [`husky`](https://npm.im/husky) and [`lint-staged`](https://npm.im/lint-staged).
 - Removed `package-lock.json` from the `.gitignore` and `.prettierignore` files as it’s disabled in `.npmrc` anyway.
 - Removed `npm-debug.log` from the `.gitignore` file as npm [v4.2.0](https://github.com/npm/npm/releases/tag/v4.2.0)+ doesn’t create it in the current working directory.
+- Removed the package `engines.npm` field.
 - Moved dev config from `package.json` to separate files, for a leaner install size.
 - Configured Prettier option `semi` to the default, `true`.
 - Use GitHub Actions instead of Travis for CI.

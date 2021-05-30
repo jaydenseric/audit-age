@@ -23,8 +23,7 @@
   ],
   "bin": "cli.js",
   "engines": {
-    "node": ">=8.5",
-    "npm": ">=5.2"
+    "node": "^12.20 || >= 14.13"
   },
   "dependencies": {
     "chalk": "^2.4.1",
