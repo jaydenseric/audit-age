@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
-'use strict';
-
-const { exec } = require('child_process');
-const { promisify } = require('util');
-const chalk = require('chalk');
-const Table = require('cli-table3');
-const moment = require('moment');
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import chalk from 'chalk';
+import Table from 'cli-table3';
+import moment from 'moment';
 
 const asyncExec = promisify(exec);
 const startTime = new Date();

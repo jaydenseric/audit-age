@@ -19,9 +19,11 @@
     "age"
   ],
   "files": [
-    "cli.js"
+    "cli"
   ],
-  "bin": "cli.js",
+  "bin": {
+    "audit-age": "cli/audit-age.mjs"
+  },
   "engines": {
     "node": "^12.20 || >= 14.13"
   },
