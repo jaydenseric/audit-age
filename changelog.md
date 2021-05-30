@@ -5,6 +5,7 @@
 ### Major
 
 - Updated Node.js support to `^12.20 || >= 14.13`.
+- Updated dependencies, some of which require newer Node.js versions than were previously supported.
 
 ### Minor
 

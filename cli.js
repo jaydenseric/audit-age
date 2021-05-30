@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
+'use strict';
+
 const { exec } = require('child_process');
 const { promisify } = require('util');
-const Table = require('cli-table3');
 const chalk = require('chalk');
+const Table = require('cli-table3');
 const moment = require('moment');
 
 const asyncExec = promisify(exec);
@@ -13,32 +15,32 @@ const thresholds = [
     label: 'Day',
     count: 0,
     ms: 8.64e7,
-    color: 'green'
+    color: 'green',
   },
   {
     label: 'Week',
     count: 0,
     ms: 6.048e8,
-    color: 'cyan'
+    color: 'cyan',
   },
   {
     label: 'Month',
     count: 0,
     ms: 2.628e9,
-    color: 'magenta'
+    color: 'magenta',
   },
   {
     label: 'Year',
     count: 0,
     ms: 3.154e10,
-    color: 'yellow'
+    color: 'yellow',
   },
   {
     label: 'Year+',
     count: 0,
     ms: Infinity,
-    color: 'red'
-  }
+    color: 'red',
+  },
 ];
 const clearTableChars = {
   top: '',
@@ -55,7 +57,7 @@ const clearTableChars = {
   'mid-mid': '',
   right: '',
   'right-mid': '',
-  middle: ''
+  middle: '',
 };
 
 /**
@@ -71,8 +73,8 @@ async function auditAge() {
 
   /**
    * Recurses dependencies to prepare the report.
-   * @argument {Object[]} dependencies Dependencies nested at the current level.
-   * @argument {string[]} ancestorPath How the dependency is nested.
+   * @param {Array<object>} dependencies Dependencies nested at the current level.
+   * @param {Array<string>} ancestorPath How the dependency is nested.
    */
   const recurse = (dependencies, ancestorPath = []) => {
     Object.entries(dependencies).forEach(
@@ -91,7 +93,7 @@ async function auditAge() {
                 name,
                 version,
                 published,
-                threshold
+                threshold,
               };
             }
           )
@@ -112,8 +114,8 @@ async function auditAge() {
     chars: {
       ...clearTableChars,
       mid: '─',
-      'mid-mid': '─'
-    }
+      'mid-mid': '─',
+    },
   });
 
   sorted.forEach(({ path, published, threshold }) =>
@@ -123,15 +125,15 @@ async function auditAge() {
         content: path.reduce((tree, item, index) => {
           if (index > 0) tree += `\n${'   '.repeat(index - 1)}└─ `;
           return (index === path.length - 1 ? chalk.dim(tree) : tree) + item;
-        }, '')
+        }, ''),
       },
       {
         hAlign: 'right',
         vAlign: 'bottom',
         content: `${chalk[threshold.color](
           published.fromNow()
-        )}\n${published.format('lll')}`
-      }
+        )}\n${published.format('lll')}`,
+      },
     ])
   );
 
@@ -139,19 +141,19 @@ async function auditAge() {
   console.log(`${packagesTable.toString()}\n\n`);
 
   const summaryTable = new Table({
-    chars: clearTableChars
+    chars: clearTableChars,
   });
 
   thresholds.reverse().forEach(({ color, label, count }) =>
     summaryTable.push([
       {
         hAlign: 'right',
-        content: chalk[color](label)
+        content: chalk[color](label),
       },
       {
         hAlign: 'right',
-        content: count
-      }
+        content: count,
+      },
     ])
   );
 
@@ -160,8 +162,9 @@ async function auditAge() {
 
   // eslint-disable-next-line no-console
   console.log(
-    `Audited ${lookups.length} package ages in ${(new Date() - startTime) /
-      1000}s.\n`
+    `Audited ${lookups.length} package ages in ${
+      (new Date() - startTime) / 1000
+    }s.\n`
   );
 }
 
