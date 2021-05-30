@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-const { exec } = require('child_process')
-const { promisify } = require('util')
-const Table = require('cli-table3')
-const chalk = require('chalk')
-const moment = require('moment')
+const { exec } = require('child_process');
+const { promisify } = require('util');
+const Table = require('cli-table3');
+const chalk = require('chalk');
+const moment = require('moment');
 
-const asyncExec = promisify(exec)
-const startTime = new Date()
+const asyncExec = promisify(exec);
+const startTime = new Date();
 const thresholds = [
   {
     label: 'Day',
@@ -39,7 +39,7 @@ const thresholds = [
     ms: Infinity,
     color: 'red'
   }
-]
+];
 const clearTableChars = {
   top: '',
   'top-mid': '',
@@ -56,7 +56,7 @@ const clearTableChars = {
   right: '',
   'right-mid': '',
   middle: ''
-}
+};
 
 /**
  * Audits the age of installed npm packages.
@@ -65,9 +65,9 @@ const clearTableChars = {
 async function auditAge() {
   const { stdout: rawTree } = await asyncExec(
     'npm ls --prod --only production --json'
-  )
-  const tree = JSON.parse(rawTree)
-  const lookups = []
+  );
+  const tree = JSON.parse(rawTree);
+  const lookups = [];
 
   /**
    * Recurses dependencies to prepare the report.
@@ -77,52 +77,52 @@ async function auditAge() {
   const recurse = (dependencies, ancestorPath = []) => {
     Object.entries(dependencies).forEach(
       ([name, { version, dependencies }]) => {
-        const path = [...ancestorPath, `${name}@${version}`]
+        const path = [...ancestorPath, `${name}@${version}`];
         lookups.push(
           asyncExec(`npm view ${name} time --json`).then(
             ({ stdout: rawTimes }) => {
-              const times = JSON.parse(rawTimes)
-              const published = moment(times[version])
-              const msDiff = moment(startTime).diff(published)
-              const threshold = thresholds.find(({ ms }) => msDiff < ms)
-              threshold.count++
+              const times = JSON.parse(rawTimes);
+              const published = moment(times[version]);
+              const msDiff = moment(startTime).diff(published);
+              const threshold = thresholds.find(({ ms }) => msDiff < ms);
+              threshold.count++;
               return {
                 path,
                 name,
                 version,
                 published,
                 threshold
-              }
+              };
             }
           )
-        )
-        if (dependencies) recurse(dependencies, path)
+        );
+        if (dependencies) recurse(dependencies, path);
       }
-    )
-  }
+    );
+  };
 
-  recurse(tree.dependencies)
+  recurse(tree.dependencies);
 
   // eslint-disable-next-line no-console
-  console.log(`\nFetching ${lookups.length} package ages...\n`)
+  console.log(`\nFetching ${lookups.length} package ages...\n`);
 
-  const list = await Promise.all(lookups)
-  const sorted = list.sort((a, b) => a.published - b.published)
+  const list = await Promise.all(lookups);
+  const sorted = list.sort((a, b) => a.published - b.published);
   const packagesTable = new Table({
     chars: {
       ...clearTableChars,
       mid: '─',
       'mid-mid': '─'
     }
-  })
+  });
 
   sorted.forEach(({ path, published, threshold }) =>
     packagesTable.push([
       {
         vAlign: 'bottom',
         content: path.reduce((tree, item, index) => {
-          if (index > 0) tree += `\n${'   '.repeat(index - 1)}└─ `
-          return (index === path.length - 1 ? chalk.dim(tree) : tree) + item
+          if (index > 0) tree += `\n${'   '.repeat(index - 1)}└─ `;
+          return (index === path.length - 1 ? chalk.dim(tree) : tree) + item;
         }, '')
       },
       {
@@ -133,14 +133,14 @@ async function auditAge() {
         )}\n${published.format('lll')}`
       }
     ])
-  )
+  );
 
   // eslint-disable-next-line no-console
-  console.log(`${packagesTable.toString()}\n\n`)
+  console.log(`${packagesTable.toString()}\n\n`);
 
   const summaryTable = new Table({
     chars: clearTableChars
-  })
+  });
 
   thresholds.reverse().forEach(({ color, label, count }) =>
     summaryTable.push([
@@ -153,16 +153,16 @@ async function auditAge() {
         content: count
       }
     ])
-  )
+  );
 
   // eslint-disable-next-line no-console
-  console.log(`${summaryTable.toString()}\n`)
+  console.log(`${summaryTable.toString()}\n`);
 
   // eslint-disable-next-line no-console
   console.log(
     `Audited ${lookups.length} package ages in ${(new Date() - startTime) /
       1000}s.\n`
-  )
+  );
 }
 
-auditAge()
+auditAge();
