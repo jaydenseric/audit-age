@@ -41,9 +41,9 @@
     "prettier": "^2.3.0"
   },
   "scripts": {
-    "lint:eslint": "eslint .",
-    "lint:prettier": "prettier '**/*.md' -l",
-    "test": "npm run lint:eslint && npm run lint:prettier",
+    "test": "npm run test:eslint && npm run test:prettier",
+    "test:eslint": "eslint .",
+    "test:prettier": "prettier -c .",
     "prepublishOnly": "npm test"
   }
 }
