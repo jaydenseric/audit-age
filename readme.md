@@ -1,6 +1,6 @@
 # audit-age
 
-[![Build status](https://travis-ci.org/jaydenseric/audit-age.svg)](https://travis-ci.org/jaydenseric/audit-age) [![npm version](https://img.shields.io/npm/v/audit-age.svg)](https://npm.im/audit-age)
+[![npm version](https://img.shields.io/npm/v/audit-age.svg)](https://npm.im/audit-age) [![CI status](https://github.com/jaydenseric/audit-age/workflows/CI/badge.svg)](https://github.com/jaydenseric/audit-age/actions)
 
 An npx CLI utility for auditing the age of installed npm packages.
 
