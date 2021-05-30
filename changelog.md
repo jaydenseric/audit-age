@@ -2,6 +2,12 @@
 
 ## Next
 
+### Minor
+
+- Setup [GitHub Sponsors funding](https://github.com/sponsors/jaydenseric):
+  - Added `.github/funding.yml` to display a sponsor button in GitHub.
+  - Added a package `funding` field to enable npm CLI funding features.
+
 ### Patch
 
 - Removed `package-lock.json` from the `.gitignore` and `.prettierignore` files as it’s disabled in `.npmrc` anyway.
