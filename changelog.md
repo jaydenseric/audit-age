@@ -13,6 +13,7 @@
 - Stop using [`husky`](https://npm.im/husky) and [`lint-staged`](https://npm.im/lint-staged).
 - Removed `package-lock.json` from the `.gitignore` and `.prettierignore` files as it’s disabled in `.npmrc` anyway.
 - Removed `npm-debug.log` from the `.gitignore` file as npm [v4.2.0](https://github.com/npm/npm/releases/tag/v4.2.0)+ doesn’t create it in the current working directory.
+- Moved dev config from `package.json` to separate files, for a leaner install size.
 - Configured Prettier option `semi` to the default, `true`.
 - Updated the EditorConfig.
 - Amended the changelog entry for v0.1.1.

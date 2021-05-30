@@ -45,14 +45,5 @@
     "lint:prettier": "prettier '**/*.md' -l",
     "test": "npm run lint:eslint && npm run lint:prettier",
     "prepublishOnly": "npm test"
-  },
-  "eslintConfig": {
-    "extends": [
-      "env"
-    ]
-  },
-  "prettier": {
-    "proseWrap": "never",
-    "singleQuote": true
   }
 }
