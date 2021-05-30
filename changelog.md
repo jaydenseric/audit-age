@@ -4,6 +4,7 @@
 
 ### Patch
 
+- Updated the EditorConfig.
 - Amended the changelog entry for v0.1.1.
 
 ## 0.1.1
