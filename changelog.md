@@ -27,6 +27,7 @@
 - Configured Prettier option `semi` to the default, `true`.
 - Use GitHub Actions instead of Travis for CI.
 - Updated the EditorConfig.
+- Use [Badgen](https://badgen.net) instead of [Shields](https://shields.io) for the readme npm version badge.
 - Removed the readme section “Demo”.
 - Amended the changelog entry for v0.1.1.
 
