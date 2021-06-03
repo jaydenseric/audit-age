@@ -17,8 +17,6 @@
 ### Patch
 
 - Stop using [`husky`](https://npm.im/husky) and [`lint-staged`](https://npm.im/lint-staged).
-- Removed `package-lock.json` from the `.gitignore` and `.prettierignore` files as it’s disabled in `.npmrc` anyway.
-- Removed `npm-debug.log` from the `.gitignore` file as npm [v4.2.0](https://github.com/npm/npm/releases/tag/v4.2.0)+ doesn’t create it in the current working directory.
 - Updated the package `keywords` field.
 - Removed the package `engines.npm` field.
 - More specific package `bin` field.
@@ -27,6 +25,8 @@
 - Configured Prettier option `semi` to the default, `true`.
 - Use GitHub Actions instead of Travis for CI.
 - Updated the EditorConfig.
+- Removed `package-lock.json` from the `.gitignore` and `.prettierignore` files as it’s disabled in `.npmrc` anyway.
+- Removed `npm-debug.log` from the `.gitignore` file as npm [v4.2.0](https://github.com/npm/npm/releases/tag/v4.2.0)+ doesn’t create it in the current working directory.
 - Use [Badgen](https://badgen.net) instead of [Shields](https://shields.io) for the readme npm version badge.
 - Removed the readme section “Demo”.
 - Amended the changelog entry for v0.1.1.
