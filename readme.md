@@ -8,7 +8,3 @@ An npx CLI utility for auditing the age of installed npm packages.
 
 1.  In Terminal, navigate to a Node.js project with a `package.json` file and a populated `node_modules` directory.
 2.  Run `npx audit-age`.
-
-## Demo
-
-![audit-age demo](https://cdn.rawgit.com/jaydenseric/audit-age/7f272c7/demo.svg)

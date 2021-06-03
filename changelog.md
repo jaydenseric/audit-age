@@ -27,6 +27,7 @@
 - Configured Prettier option `semi` to the default, `true`.
 - Use GitHub Actions instead of Travis for CI.
 - Updated the EditorConfig.
+- Removed the readme section “Demo”.
 - Amended the changelog entry for v0.1.1.
 
 ## 0.1.1
