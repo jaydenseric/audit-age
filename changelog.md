@@ -1,6 +1,6 @@
 # audit-age changelog
 
-## Next
+## 1.0.0
 
 ### Major
 
