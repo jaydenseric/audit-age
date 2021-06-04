@@ -1,5 +1,11 @@
 # audit-age changelog
 
+## Next
+
+### Patch
+
+- Amended the changelog entry for v1.0.0.
+
 ## 1.0.0
 
 ### Major
@@ -41,7 +47,9 @@
 - Only audit deduped packages once to massively speedup audits and simplify output.
 - Made the `audit-age` CLI output the audit in smaller `stdout` chunks instead of all at once, fixing [#3](https://github.com/jaydenseric/audit-age/issues/3).
 - Use the more efficient Node.js `child_process` function `execFile` instead of `exec` when running the npm CLI.
-- Removed redundant `--only production` args from the `npm ls` command used to get the dependency tree for the package being audited.
+- Updated the `npm ls` command arguments used to get the dependency tree for the package being audited:
+  - Added `--all` to fix npm v7+ no longer including nested dependencies by default.
+  - Removed the redundant `--only production`.
 - Configured Prettier option `semi` to the default, `true`.
 - Use GitHub Actions instead of Travis for CI.
 - Updated the EditorConfig.
