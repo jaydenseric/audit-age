@@ -50,6 +50,7 @@
 - Use [Badgen](https://badgen.net) instead of [Shields](https://shields.io) for the readme npm version badge.
 - Removed the readme section “Demo”.
 - Improved documentation.
+- The file `changelog.md` is no longer published.
 - Amended the changelog entry for v0.1.1.
 
 ## 0.1.1
