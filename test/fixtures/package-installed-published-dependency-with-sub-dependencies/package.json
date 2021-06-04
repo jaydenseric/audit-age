@@ -1,0 +1,7 @@
+{
+  "name": "package-installed-published-dependency-with-sub-dependencies",
+  "private": true,
+  "dependencies": {
+    "test-director": "^6.0.0"
+  }
+}

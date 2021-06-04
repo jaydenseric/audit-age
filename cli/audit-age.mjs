@@ -1,169 +1,128 @@
 #!/usr/bin/env node
 
-import { exec } from 'child_process';
-import { promisify } from 'util';
-import chalk from 'chalk';
-import Table from 'cli-table3';
-import moment from 'moment';
+import createFormatDuration from 'duration-relativetimeformat';
+import kleur from 'kleur';
+import reportCliError from '../private/reportCliError.mjs';
+import auditAge from '../public/auditAge.mjs';
 
-const asyncExec = promisify(exec);
-const startTime = new Date();
-const thresholds = [
-  {
-    label: 'Day',
-    count: 0,
-    ms: 8.64e7,
-    color: 'green',
-  },
-  {
-    label: 'Week',
-    count: 0,
-    ms: 6.048e8,
-    color: 'cyan',
-  },
-  {
-    label: 'Month',
-    count: 0,
-    ms: 2.628e9,
-    color: 'magenta',
-  },
-  {
-    label: 'Year',
-    count: 0,
-    ms: 3.154e10,
-    color: 'yellow',
-  },
-  {
-    label: 'Year+',
-    count: 0,
-    ms: Infinity,
-    color: 'red',
-  },
-];
-const clearTableChars = {
-  top: '',
-  'top-mid': '',
-  'top-left': '',
-  'top-right': '',
-  bottom: '',
-  'bottom-mid': '',
-  'bottom-left': '',
-  'bottom-right': '',
-  left: '',
-  'left-mid': '',
-  mid: '',
-  'mid-mid': '',
-  right: '',
-  'right-mid': '',
-  middle: '',
-};
+const formatDuration = createFormatDuration('en-US');
 
 /**
- * Audits the age of installed npm packages.
- * @private
+ * Runs the `audit-age` CLI.
+ * @kind function
+ * @name auditAgeCli
+ * @returns {Promise<void>} Resolves once the operation is done.
+ * @ignore
  */
-async function auditAge() {
-  const { stdout: rawTree } = await asyncExec(
-    'npm ls --prod --only production --json'
-  );
-  const tree = JSON.parse(rawTree);
-  const lookups = [];
+async function auditAgeCli() {
+  try {
+    console.info('Auditing the age of installed production npm packages…');
 
-  /**
-   * Recurses dependencies to prepare the report.
-   * @param {Array<object>} dependencies Dependencies nested at the current level.
-   * @param {Array<string>} ancestorPath How the dependency is nested.
-   */
-  const recurse = (dependencies, ancestorPath = []) => {
-    Object.entries(dependencies).forEach(
-      ([name, { version, dependencies }]) => {
-        const path = [...ancestorPath, `${name}@${version}`];
-        lookups.push(
-          asyncExec(`npm view ${name} time --json`).then(
-            ({ stdout: rawTimes }) => {
-              const times = JSON.parse(rawTimes);
-              const published = moment(times[version]);
-              const msDiff = moment(startTime).diff(published);
-              const threshold = thresholds.find(({ ms }) => msDiff < ms);
-              threshold.count++;
-              return {
-                path,
-                name,
-                version,
-                published,
-                threshold,
-              };
-            }
-          )
-        );
-        if (dependencies) recurse(dependencies, path);
-      }
+    const dateAudit = new Date();
+    const audit = await auditAge();
+    const unknownCategory = {
+      label: 'Unknown',
+      color: 'grey',
+      count: 0,
+    };
+    const thresholdCategories = [
+      {
+        label: 'Day',
+        ms: 8.64e7,
+        color: 'green',
+        count: 0,
+      },
+      {
+        label: 'Week',
+        ms: 6.048e8,
+        color: 'cyan',
+        count: 0,
+      },
+      {
+        label: 'Month',
+        ms: 2.628e9,
+        color: 'magenta',
+        count: 0,
+      },
+      {
+        label: 'Year',
+        ms: 3.154e10,
+        color: 'yellow',
+        count: 0,
+      },
+      {
+        label: 'Year+',
+        ms: Infinity,
+        color: 'red',
+        count: 0,
+      },
+    ];
+
+    for (const { path, datePublished } of audit) {
+      let category;
+
+      if (datePublished) {
+        const msDiff = dateAudit - datePublished;
+
+        category = thresholdCategories.find(({ ms }) => msDiff < ms);
+      } else category = unknownCategory;
+
+      category.count++;
+
+      let dependencyTree = '';
+
+      path.forEach(({ name, version }, index) => {
+        if (index)
+          dependencyTree += `
+${'   '.repeat(index - 1)}└─ `;
+
+        if (index === path.length - 1)
+          dependencyTree = kleur.dim(dependencyTree);
+
+        dependencyTree += name;
+
+        if (version) dependencyTree += `@${version}`;
+      });
+
+      console.info(`
+${dependencyTree}
+${kleur[category.color](
+  `${kleur.dim(datePublished ? datePublished.toISOString() : 'Unavailable')} (${
+    datePublished ? formatDuration(datePublished, dateAudit) : 'unknown age'
+  })`
+)}`);
+    }
+
+    const allCategories = [...thresholdCategories.reverse(), unknownCategory];
+
+    // This is needed to align the category count column.
+    const longestCategoryLabelLength = Math.max(
+      ...allCategories.map(({ label }) => label.length)
     );
-  };
 
-  recurse(tree.dependencies);
+    let outputSummary = '';
 
-  // eslint-disable-next-line no-console
-  console.log(`\nFetching ${lookups.length} package ages...\n`);
+    for (const { label, color, count } of allCategories)
+      outputSummary += `
+${' '.repeat(longestCategoryLabelLength - label.length)}${kleur[color](
+        label
+      )} ${count}`;
 
-  const list = await Promise.all(lookups);
-  const sorted = list.sort((a, b) => a.published - b.published);
-  const packagesTable = new Table({
-    chars: {
-      ...clearTableChars,
-      mid: '─',
-      'mid-mid': '─',
-    },
-  });
+    outputSummary += `
 
-  sorted.forEach(({ path, published, threshold }) =>
-    packagesTable.push([
-      {
-        vAlign: 'bottom',
-        content: path.reduce((tree, item, index) => {
-          if (index > 0) tree += `\n${'   '.repeat(index - 1)}└─ `;
-          return (index === path.length - 1 ? chalk.dim(tree) : tree) + item;
-        }, ''),
-      },
-      {
-        hAlign: 'right',
-        vAlign: 'bottom',
-        content: `${chalk[threshold.color](
-          published.fromNow()
-        )}\n${published.format('lll')}`,
-      },
-    ])
-  );
+${kleur.bold(
+  `Audited the age of ${audit.length} installed production npm package${
+    audit.length === 1 ? '' : 's'
+  }.`
+)}
+`;
 
-  // eslint-disable-next-line no-console
-  console.log(`${packagesTable.toString()}\n\n`);
+    console.info(outputSummary);
+  } catch (error) {
+    reportCliError('audit-age', error);
 
-  const summaryTable = new Table({
-    chars: clearTableChars,
-  });
-
-  thresholds.reverse().forEach(({ color, label, count }) =>
-    summaryTable.push([
-      {
-        hAlign: 'right',
-        content: chalk[color](label),
-      },
-      {
-        hAlign: 'right',
-        content: count,
-      },
-    ])
-  );
-
-  // eslint-disable-next-line no-console
-  console.log(`${summaryTable.toString()}\n`);
-
-  // eslint-disable-next-line no-console
-  console.log(
-    `Audited ${lookups.length} package ages in ${
-      (new Date() - startTime) / 1000
-    }s.\n`
-  );
+    process.exitCode = 1;
+  }
 }
 
-auditAge();
+auditAgeCli();

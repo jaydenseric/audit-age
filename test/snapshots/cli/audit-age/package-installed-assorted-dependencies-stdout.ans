@@ -1,0 +1,33 @@
+Auditing the age of installed production npm packages…
+
+[2mtest-director@6.0.0
+└─ stack-utils@2.0.3
+   └─ [22mescape-string-regexp@2.0.0
+[31m[2m2019-04-17T07:49:09.559Z[22m (2 years ago)[39m
+
+[2mtest-director@6.0.0
+└─ [22mstack-utils@2.0.3
+[33m[2m2020-11-13T23:10:10.505Z[22m (6 months ago)[39m
+
+[2mtest-director@6.0.0
+└─ [22mkleur@4.1.4
+[33m[2m2021-01-22T20:16:29.328Z[22m (4 months ago)[39m
+
+[2m[22mtest-director@6.0.0
+[33m[2m2021-04-26T01:59:59.404Z[22m (last month)[39m
+
+[2m[22mfake-tag@2.0.0
+[90m[2mUnavailable[22m (unknown age)[39m
+
+[2m[22mpackage-not-installed-no-dependencies
+[90m[2mUnavailable[22m (unknown age)[39m
+
+  [31mYear+[39m 1
+   [33mYear[39m 3
+  [35mMonth[39m 0
+   [36mWeek[39m 0
+    [32mDay[39m 0
+[90mUnknown[39m 2
+
+[1mAudited the age of 6 installed production npm packages.[22m
+

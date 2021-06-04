@@ -1,0 +1,7 @@
+{
+  "name": "package-installed-file-dependency",
+  "private": true,
+  "dependencies": {
+    "package-not-installed-no-dependencies": "file:../package-not-installed-no-dependencies"
+  }
+}

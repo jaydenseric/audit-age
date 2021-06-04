@@ -7,7 +7,15 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        node: ['12', '14', '16']
+        node:
+          # This package supports npm v7+. While Node.js v12 and v14 should be
+          # supported (with npm updated to v7+), this isn’t easy to test in
+          # GitHub Actions CI as actions/setup-node@v2 doesn’t allow the npm
+          # version to be configured, see:
+          # https://github.com/actions/setup-node/issues/213
+          # - '12'
+          # - '14'
+          - '16'
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js v${{ matrix.node }}

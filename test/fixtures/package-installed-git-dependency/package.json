@@ -1,0 +1,7 @@
+{
+  "name": "package-installed-git-dependency",
+  "private": true,
+  "dependencies": {
+    "fake-tag": "jaydenseric/fake-tag#v2.0.0"
+  }
+}

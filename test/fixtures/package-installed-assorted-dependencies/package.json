@@ -1,0 +1,9 @@
+{
+  "name": "package-installed-assorted-dependencies",
+  "private": true,
+  "dependencies": {
+    "fake-tag": "jaydenseric/fake-tag#v2.0.0",
+    "package-not-installed-no-dependencies": "file:../package-not-installed-no-dependencies",
+    "test-director": "^6.0.0"
+  }
+}
