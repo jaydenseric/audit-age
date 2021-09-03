@@ -1,6 +1,6 @@
 {
   "name": "audit-age",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Node.js CLI and equivalent JS API to audit the age of installed production npm packages.",
   "license": "MIT",
   "author": {
