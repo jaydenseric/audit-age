@@ -7,14 +7,14 @@ Auditing the age of installed production npm packages…
 
 [2mtest-director@6.0.0
 └─ [22mstack-utils@2.0.3
-[33m[2m2020-11-13T23:10:10.505Z[22m (6 months ago)[39m
+[33m[2m2020-11-13T23:10:10.505Z[22m (last year)[39m
 
 [2mtest-director@6.0.0
 └─ [22mkleur@4.1.4
-[33m[2m2021-01-22T20:16:29.328Z[22m (4 months ago)[39m
+[33m[2m2021-01-22T20:16:29.328Z[22m (this year)[39m
 
 [2m[22mtest-director@6.0.0
-[33m[2m2021-04-26T01:59:59.404Z[22m (last month)[39m
+[33m[2m2021-04-26T01:59:59.404Z[22m (4 months ago)[39m
 
 [2m[22mfake-tag@2.0.0
 [90m[2mUnavailable[22m (unknown age)[39m

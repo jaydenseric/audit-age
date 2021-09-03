@@ -4,6 +4,7 @@
 
 ### Patch
 
+- Updated the [`duration-relativetimeformat`](https://npm.im/duration-relativetimeformat) dependency to v2, fixing [#4](https://github.com/jaydenseric/audit-age/issues/4).
 - Updated dev dependencies.
 - Amended the changelog entry for v1.0.0.
 

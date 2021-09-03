@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import createFormatDuration from 'duration-relativetimeformat';
+import Duration from 'duration-relativetimeformat';
 import kleur from 'kleur';
 import reportCliError from '../private/reportCliError.mjs';
 import auditAge from '../public/auditAge.mjs';
 
-const formatDuration = createFormatDuration('en-US');
+const duration = new Duration('en-US');
 
 /**
  * Runs the `audit-age` CLI.
@@ -88,7 +88,7 @@ ${'   '.repeat(index - 1)}└─ `;
 ${dependencyTree}
 ${kleur[category.color](
   `${kleur.dim(datePublished ? datePublished.toISOString() : 'Unavailable')} (${
-    datePublished ? formatDuration(datePublished, dateAudit) : 'unknown age'
+    datePublished ? duration.format(datePublished, dateAudit) : 'unknown age'
   })`
 )}`);
     }

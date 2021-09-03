@@ -42,7 +42,7 @@
     "npm": ">= 7"
   },
   "dependencies": {
-    "duration-relativetimeformat": "^1.0.1",
+    "duration-relativetimeformat": "^2.0.1",
     "kleur": "^4.1.4"
   },
   "devDependencies": {
