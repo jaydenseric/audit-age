@@ -1,5 +1,5 @@
-import reportCliError from '../../../reportCliError.mjs';
+import reportCliError from "../../../reportCliError.mjs";
 
-const error = new Error('Message.');
+const error = new Error("Message.");
 delete error.stack;
-reportCliError('CLI', error);
+reportCliError("CLI", error);

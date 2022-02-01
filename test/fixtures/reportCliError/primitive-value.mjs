@@ -1,3 +1,3 @@
-import reportCliError from '../../../reportCliError.mjs';
+import reportCliError from "../../../reportCliError.mjs";
 
-reportCliError('CLI', '');
+reportCliError("CLI", "");

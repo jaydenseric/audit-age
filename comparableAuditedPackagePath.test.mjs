@@ -1,34 +1,34 @@
-import { strictEqual, throws } from 'assert';
+import { strictEqual, throws } from "assert";
 
-import comparableAuditedPackagePath from './comparableAuditedPackagePath.mjs';
+import comparableAuditedPackagePath from "./comparableAuditedPackagePath.mjs";
 
 export default (tests) => {
   tests.add(
-    '`comparableAuditedPackagePath` with argument 1 `path` not an array.',
+    "`comparableAuditedPackagePath` with argument 1 `path` not an array.",
     () => {
       throws(
         () => comparableAuditedPackagePath(true),
-        new TypeError('Argument 1 `path` must be an array.')
+        new TypeError("Argument 1 `path` must be an array.")
       );
     }
   );
 
-  tests.add('`comparableAuditedPackagePath` with a deep path.', () => {
+  tests.add("`comparableAuditedPackagePath` with a deep path.", () => {
     strictEqual(
       comparableAuditedPackagePath([
         {
-          name: 'a',
-          version: '1.0.0',
+          name: "a",
+          version: "1.0.0",
         },
         {
-          name: 'b',
+          name: "b",
         },
         {
-          name: 'c',
-          version: '2.0.0',
+          name: "c",
+          version: "2.0.0",
         },
       ]),
-      'a@1.0.0/b/c@2.0.0'
+      "a@1.0.0/b/c@2.0.0"
     );
   });
 };

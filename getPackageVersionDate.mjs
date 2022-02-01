@@ -1,5 +1,5 @@
-import execFilePromise from './execFilePromise.mjs';
-import isDirectoryPath from './isDirectoryPath.mjs';
+import execFilePromise from "./execFilePromise.mjs";
+import isDirectoryPath from "./isDirectoryPath.mjs";
 
 /**
  * Gets the date an [npm](https://npmjs.com) package version was published.
@@ -14,24 +14,24 @@ export default async function getPackageVersionDate(
   version,
   cwd = process.cwd()
 ) {
-  if (typeof name !== 'string')
-    throw new TypeError('Argument 1 `name` must be a string.');
+  if (typeof name !== "string")
+    throw new TypeError("Argument 1 `name` must be a string.");
 
-  if (typeof version !== 'string')
-    throw new TypeError('Argument 2 `version` must be a string.');
+  if (typeof version !== "string")
+    throw new TypeError("Argument 2 `version` must be a string.");
 
-  if (typeof cwd !== 'string')
-    throw new TypeError('Argument 3 `cwd` must be a string.');
+  if (typeof cwd !== "string")
+    throw new TypeError("Argument 3 `cwd` must be a string.");
 
   if (!(await isDirectoryPath(cwd)))
     throw new TypeError(
-      'Argument 3 `cwd` must be an accessible directory path.'
+      "Argument 3 `cwd` must be an accessible directory path."
     );
 
   try {
     var { stdout } = await execFilePromise(
-      'npm',
-      ['view', name, 'time', '--json'],
+      "npm",
+      ["view", name, "time", "--json"],
       { cwd }
     );
     var { [version]: date } = JSON.parse(stdout);

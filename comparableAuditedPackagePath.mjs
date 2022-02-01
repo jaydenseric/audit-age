@@ -9,9 +9,9 @@
  */
 export default function comparableAuditedPackagePath(path) {
   if (!Array.isArray(path))
-    throw new TypeError('Argument 1 `path` must be an array.');
+    throw new TypeError("Argument 1 `path` must be an array.");
 
   return path
     .map(({ name, version }) => (version ? `${name}@${version}` : name))
-    .join('/');
+    .join("/");
 }

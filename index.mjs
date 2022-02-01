@@ -1,4 +1,4 @@
-export { default as auditAge } from './auditAge.mjs';
+export { default as auditAge } from "./auditAge.mjs";
 
 /**
  * An audit of installed [npm](https://npmjs.com) package production

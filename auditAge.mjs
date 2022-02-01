@@ -1,7 +1,7 @@
-import execFilePromise from './execFilePromise.mjs';
-import getPackageVersionDate from './getPackageVersionDate.mjs';
-import isDirectoryPath from './isDirectoryPath.mjs';
-import sortAudit from './sortAudit.mjs';
+import execFilePromise from "./execFilePromise.mjs";
+import getPackageVersionDate from "./getPackageVersionDate.mjs";
+import isDirectoryPath from "./isDirectoryPath.mjs";
+import sortAudit from "./sortAudit.mjs";
 
 /**
  * Audits the age of installed production [npm](https://npmjs.com) packages.
@@ -11,30 +11,30 @@ import sortAudit from './sortAudit.mjs';
  * @returns {Promise<Audit>} Audit.
  * @example <caption>Ways to `import`.</caption>
  * ```js
- * import { auditAge } from 'audit-age';
+ * import { auditAge } from "audit-age";
  * ```
  *
  * ```js
- * import auditAge from 'audit-age/auditAge.mjs';
+ * import auditAge from "audit-age/auditAge.mjs";
  * ```
  */
 export default async function auditAge(packageDirPath = process.cwd()) {
-  if (typeof packageDirPath !== 'string')
-    throw new TypeError('Argument 1 `packageDirPath` must be a string.');
+  if (typeof packageDirPath !== "string")
+    throw new TypeError("Argument 1 `packageDirPath` must be a string.");
 
   if (!(await isDirectoryPath(packageDirPath)))
     throw new TypeError(
-      'Argument 1 `packageDirPath` must be an accessible directory path.'
+      "Argument 1 `packageDirPath` must be an accessible directory path."
     );
 
   try {
     var { stdout: dependencyTreeJson } = await execFilePromise(
-      'npm',
-      ['ls', '--all', '--prod', '--json'],
+      "npm",
+      ["ls", "--all", "--prod", "--json"],
       { cwd: packageDirPath }
     );
   } catch (error) {
-    throw new Error('Failed to list installed npm packages.');
+    throw new Error("Failed to list installed npm packages.");
   }
 
   const dependencyTree = JSON.parse(dependencyTreeJson);
@@ -74,7 +74,7 @@ export default async function auditAge(packageDirPath = process.cwd()) {
             // be configured per package namespaces. Due to all this complexity,
             // assume that the package installed from an npm registry if
             // `resolved` is a URL starting with `http`.
-            resolved.startsWith('http')
+            resolved.startsWith("http")
           )
             loading.push(
               // Using `p-limit` to limit concurrency didn’t seem to improve

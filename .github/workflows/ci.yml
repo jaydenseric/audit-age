@@ -13,9 +13,9 @@ jobs:
           # GitHub Actions CI as actions/setup-node@v2 doesn’t allow the npm
           # version to be configured, see:
           # https://github.com/actions/setup-node/issues/213
-          # - '12'
-          # - '14'
-          - '16'
+          # - "12"
+          # - "14"
+          - "16"
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js v${{ matrix.node }}

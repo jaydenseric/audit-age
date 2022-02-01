@@ -55,11 +55,11 @@ Audits the age of installed production [npm](https://npmjs.com) packages.
 _Ways to `import`._
 
 > ```js
-> import { auditAge } from 'audit-age';
+> import { auditAge } from "audit-age";
 > ```
 >
 > ```js
-> import auditAge from 'audit-age/auditAge.mjs';
+> import auditAge from "audit-age/auditAge.mjs";
 > ```
 
 ---

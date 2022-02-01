@@ -16,6 +16,7 @@
 - Simplified dev dependencies and config for ESLint.
 - Use a new [`replace-stack-traces`](https://npm.im/replace-stack-traces) dev dependency in tests.
 - Reorganized the test file structure.
+- Configured Prettier option `singleQuote` to the default, `false`.
 
 ## 1.0.1
 

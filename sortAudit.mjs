@@ -1,4 +1,4 @@
-import comparableAuditedPackagePath from './comparableAuditedPackagePath.mjs';
+import comparableAuditedPackagePath from "./comparableAuditedPackagePath.mjs";
 
 /**
  * Sorts an audit by date published in ascending order (with items without date
@@ -12,7 +12,7 @@ import comparableAuditedPackagePath from './comparableAuditedPackagePath.mjs';
  */
 export default function sortAudit(audit) {
   if (!Array.isArray(audit))
-    throw new TypeError('Argument 1 `audit` must be an array.');
+    throw new TypeError("Argument 1 `audit` must be an array.");
 
   return audit.sort((a, b) =>
     a.datePublished === b.datePublished
@@ -20,7 +20,7 @@ export default function sortAudit(audit) {
         // path in alphabetical ascending order.
         comparableAuditedPackagePath(a.path).localeCompare(
           comparableAuditedPackagePath(b.path),
-          'en-US'
+          "en-US"
         )
       : !a.datePublished
       ? // Move left item without date published to the right.

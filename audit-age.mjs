@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import Duration from 'duration-relativetimeformat';
-import kleur from 'kleur';
+import Duration from "duration-relativetimeformat";
+import kleur from "kleur";
 
-import auditAge from './auditAge.mjs';
-import reportCliError from './reportCliError.mjs';
+import auditAge from "./auditAge.mjs";
+import reportCliError from "./reportCliError.mjs";
 
-const duration = new Duration('en-US');
+const duration = new Duration("en-US");
 
 /**
  * Runs the `audit-age` CLI.
@@ -17,44 +17,44 @@ const duration = new Duration('en-US');
  */
 async function auditAgeCli() {
   try {
-    console.info('Auditing the age of installed production npm packages…');
+    console.info("Auditing the age of installed production npm packages…");
 
     const dateAudit = new Date();
     const audit = await auditAge();
     const unknownCategory = {
-      label: 'Unknown',
-      color: 'grey',
+      label: "Unknown",
+      color: "grey",
       count: 0,
     };
     const thresholdCategories = [
       {
-        label: 'Day',
+        label: "Day",
         ms: 8.64e7,
-        color: 'green',
+        color: "green",
         count: 0,
       },
       {
-        label: 'Week',
+        label: "Week",
         ms: 6.048e8,
-        color: 'cyan',
+        color: "cyan",
         count: 0,
       },
       {
-        label: 'Month',
+        label: "Month",
         ms: 2.628e9,
-        color: 'magenta',
+        color: "magenta",
         count: 0,
       },
       {
-        label: 'Year',
+        label: "Year",
         ms: 3.154e10,
-        color: 'yellow',
+        color: "yellow",
         count: 0,
       },
       {
-        label: 'Year+',
+        label: "Year+",
         ms: Infinity,
-        color: 'red',
+        color: "red",
         count: 0,
       },
     ];
@@ -70,12 +70,12 @@ async function auditAgeCli() {
 
       category.count++;
 
-      let dependencyTree = '';
+      let dependencyTree = "";
 
       path.forEach(({ name, version }, index) => {
         if (index)
           dependencyTree += `
-${'   '.repeat(index - 1)}└─ `;
+${"   ".repeat(index - 1)}└─ `;
 
         if (index === path.length - 1)
           dependencyTree = kleur.dim(dependencyTree);
@@ -88,8 +88,8 @@ ${'   '.repeat(index - 1)}└─ `;
       console.info(`
 ${dependencyTree}
 ${kleur[category.color](
-  `${kleur.dim(datePublished ? datePublished.toISOString() : 'Unavailable')} (${
-    datePublished ? duration.format(datePublished, dateAudit) : 'unknown age'
+  `${kleur.dim(datePublished ? datePublished.toISOString() : "Unavailable")} (${
+    datePublished ? duration.format(datePublished, dateAudit) : "unknown age"
   })`
 )}`);
     }
@@ -101,11 +101,11 @@ ${kleur[category.color](
       ...allCategories.map(({ label }) => label.length)
     );
 
-    let outputSummary = '';
+    let outputSummary = "";
 
     for (const { label, color, count } of allCategories)
       outputSummary += `
-${' '.repeat(longestCategoryLabelLength - label.length)}${kleur[color](
+${" ".repeat(longestCategoryLabelLength - label.length)}${kleur[color](
         label
       )} ${count}`;
 
@@ -113,14 +113,14 @@ ${' '.repeat(longestCategoryLabelLength - label.length)}${kleur[color](
 
 ${kleur.bold(
   `Audited the age of ${audit.length} installed production npm package${
-    audit.length === 1 ? '' : 's'
+    audit.length === 1 ? "" : "s"
   }.`
 )}
 `;
 
     console.info(outputSummary);
   } catch (error) {
-    reportCliError('audit-age', error);
+    reportCliError("audit-age", error);
 
     process.exitCode = 1;
   }
