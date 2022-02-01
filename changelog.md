@@ -17,6 +17,7 @@
 - Use a new [`replace-stack-traces`](https://npm.im/replace-stack-traces) dev dependency in tests.
 - Reorganized the test file structure.
 - Configured Prettier option `singleQuote` to the default, `false`.
+- Added a `license.md` MIT License file.
 
 ## 1.0.1
 
