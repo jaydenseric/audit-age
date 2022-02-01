@@ -1,7 +1,7 @@
-import execFilePromise from '../private/execFilePromise.mjs';
-import getPackageVersionDate from '../private/getPackageVersionDate.mjs';
-import isDirectoryPath from '../private/isDirectoryPath.mjs';
-import sortAudit from '../private/sortAudit.mjs';
+import execFilePromise from './execFilePromise.mjs';
+import getPackageVersionDate from './getPackageVersionDate.mjs';
+import isDirectoryPath from './isDirectoryPath.mjs';
+import sortAudit from './sortAudit.mjs';
 
 /**
  * Audits the age of installed production [npm](https://npmjs.com) packages.
@@ -15,7 +15,7 @@ import sortAudit from '../private/sortAudit.mjs';
  * ```
  *
  * ```js
- * import auditAge from 'audit-age/public/auditAge.mjs';
+ * import auditAge from 'audit-age/auditAge.mjs';
  * ```
  */
 export default async function auditAge(packageDirPath = process.cwd()) {

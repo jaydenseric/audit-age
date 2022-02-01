@@ -1,6 +1,6 @@
 import { strictEqual, throws } from 'assert';
 
-import comparableAuditedPackagePath from '../../private/comparableAuditedPackagePath.mjs';
+import comparableAuditedPackagePath from './comparableAuditedPackagePath.mjs';
 
 export default (tests) => {
   tests.add(

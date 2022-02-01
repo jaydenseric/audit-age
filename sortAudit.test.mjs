@@ -1,6 +1,6 @@
 import { deepStrictEqual, strictEqual, throws } from 'assert';
 
-import sortAudit from '../../private/sortAudit.mjs';
+import sortAudit from './sortAudit.mjs';
 
 export default (tests) => {
   tests.add('`sortAudit` with argument 1 `path` not an array.', () => {

@@ -59,7 +59,7 @@ _Ways to `import`._
 > ```
 >
 > ```js
-> import auditAge from 'audit-age/public/auditAge.mjs';
+> import auditAge from 'audit-age/auditAge.mjs';
 > ```
 
 ---

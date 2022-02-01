@@ -3,8 +3,8 @@
 import Duration from 'duration-relativetimeformat';
 import kleur from 'kleur';
 
-import reportCliError from '../private/reportCliError.mjs';
-import auditAge from '../public/auditAge.mjs';
+import auditAge from './auditAge.mjs';
+import reportCliError from './reportCliError.mjs';
 
 const duration = new Duration('en-US');
 

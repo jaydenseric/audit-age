@@ -1,7 +1,7 @@
 import { rejects, strictEqual } from 'assert';
 import { fileURLToPath } from 'url';
 
-import isDirectoryPath from '../../private/isDirectoryPath.mjs';
+import isDirectoryPath from './isDirectoryPath.mjs';
 
 export default (tests) => {
   tests.add(

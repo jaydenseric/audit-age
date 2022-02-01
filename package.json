@@ -22,19 +22,27 @@
     "mjs"
   ],
   "files": [
-    "cli",
-    "private",
-    "public"
+    "audit-age.mjs",
+    "auditAge.mjs",
+    "comparableAuditedPackagePath.mjs",
+    "errorConsole.mjs",
+    "execFilePromise.mjs",
+    "getPackageVersionDate.mjs",
+    "index.mjs",
+    "isDirectoryPath.mjs",
+    "reportCliError.mjs",
+    "sortAudit.mjs"
   ],
   "sideEffects": false,
-  "main": "./public/index.mjs",
+  "main": "./index.mjs",
   "exports": {
-    ".": "./public/index.mjs",
-    "./public/*": "./public/*",
+    ".": "./index.mjs",
+    "./auditAge.mjs": "./auditAge.mjs",
+    "./index.mjs": "./index.mjs",
     "./package.json": "./package.json"
   },
   "bin": {
-    "audit-age": "./cli/audit-age.mjs"
+    "audit-age": "./audit-age.mjs"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >= 16.0.0",
@@ -60,7 +68,7 @@
     "test:eslint": "eslint .",
     "test:prettier": "prettier -c .",
     "test:jsdoc": "jsdoc-md -c",
-    "test:api": "coverage-node test/index.mjs",
+    "test:api": "coverage-node test.mjs",
     "prepublishOnly": "npm test"
   }
 }

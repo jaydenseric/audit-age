@@ -5,7 +5,7 @@ import snapshot from 'snapshot-assertion';
 import { fileURLToPath } from 'url';
 
 const AUDIT_AGE_CLI_PATH = fileURLToPath(
-  new URL('../../cli/audit-age.mjs', import.meta.url)
+  new URL('./audit-age.mjs', import.meta.url)
 );
 
 export default (tests) => {
@@ -17,7 +17,7 @@ export default (tests) => {
         [AUDIT_AGE_CLI_PATH],
         {
           cwd: fileURLToPath(
-            new URL('../fixtures/package-json-broken/', import.meta.url)
+            new URL('./test/fixtures/package-json-broken/', import.meta.url)
           ),
           env: {
             ...process.env,
@@ -31,14 +31,14 @@ export default (tests) => {
       await snapshot(
         stdout.toString(),
         new URL(
-          '../snapshots/cli/audit-age/package-json-broken-stdout.ans',
+          './test/snapshots/audit-age/package-json-broken-stdout.ans',
           import.meta.url
         )
       );
       await snapshot(
         replaceStackTraces(stderr.toString()),
         new URL(
-          '../snapshots/cli/audit-age/package-json-broken-stderr.ans',
+          './test/snapshots/audit-age/package-json-broken-stderr.ans',
           import.meta.url
         )
       );
@@ -55,7 +55,7 @@ export default (tests) => {
         {
           cwd: fileURLToPath(
             new URL(
-              '../fixtures/package-installed-published-dependency/',
+              './test/fixtures/package-installed-published-dependency/',
               import.meta.url
             )
           ),
@@ -71,7 +71,7 @@ export default (tests) => {
       await snapshot(
         stdout.toString(),
         new URL(
-          '../snapshots/cli/audit-age/package-installed-single-dependency-stdout.ans',
+          './test/snapshots/audit-age/package-installed-single-dependency-stdout.ans',
           import.meta.url
         )
       );
@@ -89,7 +89,7 @@ export default (tests) => {
         {
           cwd: fileURLToPath(
             new URL(
-              '../fixtures/package-installed-assorted-dependencies/',
+              './test/fixtures/package-installed-assorted-dependencies/',
               import.meta.url
             )
           ),
@@ -105,7 +105,7 @@ export default (tests) => {
       await snapshot(
         stdout.toString(),
         new URL(
-          '../snapshots/cli/audit-age/package-installed-assorted-dependencies-stdout.ans',
+          './test/snapshots/audit-age/package-installed-assorted-dependencies-stdout.ans',
           import.meta.url
         )
       );

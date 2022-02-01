@@ -1,7 +1,7 @@
 import { deepStrictEqual, rejects } from 'assert';
 import { fileURLToPath } from 'url';
 
-import auditAge from '../../public/auditAge.mjs';
+import auditAge from './auditAge.mjs';
 
 export default (tests) => {
   tests.add(
@@ -30,7 +30,7 @@ export default (tests) => {
     await rejects(
       auditAge(
         fileURLToPath(
-          new URL('../fixtures/package-json-broken/', import.meta.url)
+          new URL('./test/fixtures/package-json-broken/', import.meta.url)
         )
       ),
       new Error('Failed to list installed npm packages.')
@@ -44,7 +44,7 @@ export default (tests) => {
         await auditAge(
           fileURLToPath(
             new URL(
-              '../fixtures/package-not-installed-no-dependencies/',
+              './test/fixtures/package-not-installed-no-dependencies/',
               import.meta.url
             )
           )
@@ -61,7 +61,7 @@ export default (tests) => {
         await auditAge(
           fileURLToPath(
             new URL(
-              '../fixtures/package-installed-no-dependencies/',
+              './test/fixtures/package-installed-no-dependencies/',
               import.meta.url
             )
           )
@@ -78,7 +78,7 @@ export default (tests) => {
         await auditAge(
           fileURLToPath(
             new URL(
-              '../fixtures/package-installed-file-dependency/',
+              './test/fixtures/package-installed-file-dependency/',
               import.meta.url
             )
           )
@@ -103,7 +103,7 @@ export default (tests) => {
         await auditAge(
           fileURLToPath(
             new URL(
-              '../fixtures/package-installed-git-dependency/',
+              './test/fixtures/package-installed-git-dependency/',
               import.meta.url
             )
           )
@@ -129,7 +129,7 @@ export default (tests) => {
         await auditAge(
           fileURLToPath(
             new URL(
-              '../fixtures/package-installed-published-dependency/',
+              './test/fixtures/package-installed-published-dependency/',
               import.meta.url
             )
           )
@@ -156,7 +156,7 @@ export default (tests) => {
         await auditAge(
           fileURLToPath(
             new URL(
-              '../fixtures/package-installed-published-dependency-and-published-dev-dependency/',
+              './test/fixtures/package-installed-published-dependency-and-published-dev-dependency/',
               import.meta.url
             )
           )
@@ -183,7 +183,7 @@ export default (tests) => {
         await auditAge(
           fileURLToPath(
             new URL(
-              '../fixtures/package-installed-published-dependency-with-sub-dependencies/',
+              './test/fixtures/package-installed-published-dependency-with-sub-dependencies/',
               import.meta.url
             )
           )
@@ -253,7 +253,7 @@ export default (tests) => {
         await auditAge(
           fileURLToPath(
             new URL(
-              '../fixtures/package-installed-assorted-dependencies/',
+              './test/fixtures/package-installed-assorted-dependencies/',
               import.meta.url
             )
           )

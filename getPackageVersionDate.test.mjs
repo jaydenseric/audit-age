@@ -1,7 +1,7 @@
 import { deepStrictEqual, rejects } from 'assert';
 import { fileURLToPath } from 'url';
 
-import getPackageVersionDate from '../../private/getPackageVersionDate.mjs';
+import getPackageVersionDate from './getPackageVersionDate.mjs';
 
 export default (tests) => {
   tests.add(
