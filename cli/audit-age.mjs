@@ -2,6 +2,7 @@
 
 import Duration from 'duration-relativetimeformat';
 import kleur from 'kleur';
+
 import reportCliError from '../private/reportCliError.mjs';
 import auditAge from '../public/auditAge.mjs';
 

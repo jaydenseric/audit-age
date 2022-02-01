@@ -1,4 +1,5 @@
 import { deepStrictEqual, strictEqual, throws } from 'assert';
+
 import sortAudit from '../../private/sortAudit.mjs';
 
 export default (tests) => {
