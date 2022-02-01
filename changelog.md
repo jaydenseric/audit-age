@@ -11,6 +11,7 @@
 ### Patch
 
 - Simplified dev dependencies and config for ESLint.
+- Use a new [`replace-stack-traces`](https://npm.im/replace-stack-traces) dev dependency in tests.
 
 ## 1.0.1
 

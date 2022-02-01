@@ -7,11 +7,9 @@ import test_isDirectoryPath from './private/isDirectoryPath.test.mjs';
 import test_reportCliError from './private/reportCliError.test.mjs';
 import test_sortAudit from './private/sortAudit.test.mjs';
 import test_auditAge from './public/auditAge.test.mjs';
-import test_replaceStackTraces from './replaceStackTraces.test.mjs';
 
 const tests = new TestDirector();
 
-test_replaceStackTraces(tests);
 test_comparableAuditedPackagePath(tests);
 test_getPackageVersionDate(tests);
 test_isDirectoryPath(tests);

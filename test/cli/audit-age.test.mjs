@@ -1,9 +1,8 @@
 import { strictEqual } from 'assert';
 import { spawnSync } from 'child_process';
+import replaceStackTraces from 'replace-stack-traces';
 import snapshot from 'snapshot-assertion';
 import { fileURLToPath } from 'url';
-
-import replaceStackTraces from '../replaceStackTraces.mjs';
 
 const AUDIT_AGE_CLI_PATH = fileURLToPath(
   new URL('../../cli/audit-age.mjs', import.meta.url)

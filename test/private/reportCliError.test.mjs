@@ -1,10 +1,10 @@
 import { strictEqual, throws } from 'assert';
 import { spawnSync } from 'child_process';
+import replaceStackTraces from 'replace-stack-traces';
 import snapshot from 'snapshot-assertion';
 import { fileURLToPath } from 'url';
 
 import reportCliError from '../../private/reportCliError.mjs';
-import replaceStackTraces from '../replaceStackTraces.mjs';
 
 export default (tests) => {
   tests.add(
