@@ -14,6 +14,7 @@
 
 ### Patch
 
+- Also run GitHub Actions CI with Node.js v17.
 - Simplified package scripts.
 - Simplified dev dependencies and config for ESLint.
 - Removed the [`jsdoc-md`](https://npm.im/jsdoc-md) dev dependency and the related package scripts, replacing the readme “API” section with a manually written “Exports” section.
