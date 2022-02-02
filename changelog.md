@@ -24,6 +24,7 @@
 - Reorganized the test file structure.
 - Configured Prettier option `singleQuote` to the default, `false`.
 - Added a `license.md` MIT License file.
+- Improved documentation.
 
 ## 1.0.1
 
