@@ -1,3 +1,5 @@
+// @ts-check
+
 import execFilePromise from "./execFilePromise.mjs";
 import isDirectoryPath from "./isDirectoryPath.mjs";
 
@@ -5,9 +7,10 @@ import isDirectoryPath from "./isDirectoryPath.mjs";
  * Gets the date an [npm](https://npmjs.com) package version was published.
  * @param {string} name [npm](https://npmjs.com) package name.
  * @param {string} version [npm](https://npmjs.com) package version.
- * @param {string} [cwd] Current working directory, defaulting to `process.cwd()`. `.npmrc` files can affect how the [npm](https://npmjs.com) CLI reads from the [npm](https://npmjs.com) registry.
+ * @param {string} [cwd] Current working directory, defaulting to
+ *   `process.cwd()`. `.npmrc` files can affect how the [npm](https://npmjs.com)
+ *   CLI reads from the [npm](https://npmjs.com) registry.
  * @returns {Promise<Date>} Date published.
- * @ignore
  */
 export default async function getPackageVersionDate(
   name,

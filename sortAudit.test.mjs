@@ -1,11 +1,21 @@
+// @ts-check
+
 import { deepStrictEqual, strictEqual, throws } from "assert";
 
 import sortAudit from "./sortAudit.mjs";
 
+/**
+ * Adds `sortAudit` tests.
+ * @param {import("test-director").default} tests Test director.
+ */
 export default (tests) => {
   tests.add("`sortAudit` with argument 1 `path` not an array.", () => {
     throws(
-      () => sortAudit(true),
+      () =>
+        sortAudit(
+          // @ts-expect-error Testing invalid.
+          true
+        ),
       new TypeError("Argument 1 `audit` must be an array.")
     );
   });

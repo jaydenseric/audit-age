@@ -1,3 +1,5 @@
+// @ts-check
+
 import { strictEqual } from "assert";
 import { spawnSync } from "child_process";
 import replaceStackTraces from "replace-stack-traces";
@@ -8,6 +10,10 @@ const AUDIT_AGE_CLI_PATH = fileURLToPath(
   new URL("./audit-age.mjs", import.meta.url)
 );
 
+/**
+ * Adds `audit-age` tests.
+ * @param {import("test-director").default} tests Test director.
+ */
 export default (tests) => {
   tests.add(
     "`audit-age` CLI with a package, broken `package.json`.",
@@ -21,7 +27,7 @@ export default (tests) => {
           ),
           env: {
             ...process.env,
-            FORCE_COLOR: 1,
+            FORCE_COLOR: "1",
           },
         }
       );
@@ -61,7 +67,7 @@ export default (tests) => {
           ),
           env: {
             ...process.env,
-            FORCE_COLOR: 1,
+            FORCE_COLOR: "1",
           },
         }
       );
@@ -95,7 +101,7 @@ export default (tests) => {
           ),
           env: {
             ...process.env,
-            FORCE_COLOR: 1,
+            FORCE_COLOR: "1",
           },
         }
       );

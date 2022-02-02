@@ -1,13 +1,23 @@
+// @ts-check
+
 import { strictEqual, throws } from "assert";
 
 import comparableAuditedPackagePath from "./comparableAuditedPackagePath.mjs";
 
+/**
+ * Adds `comparableAuditedPackagePath` tests.
+ * @param {import("test-director").default} tests Test director.
+ */
 export default (tests) => {
   tests.add(
     "`comparableAuditedPackagePath` with argument 1 `path` not an array.",
     () => {
       throws(
-        () => comparableAuditedPackagePath(true),
+        () =>
+          comparableAuditedPackagePath(
+            // @ts-expect-error Testing invalid.
+            true
+          ),
         new TypeError("Argument 1 `path` must be an array.")
       );
     }

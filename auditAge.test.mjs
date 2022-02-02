@@ -1,14 +1,23 @@
+// @ts-check
+
 import { deepStrictEqual, rejects } from "assert";
 import { fileURLToPath } from "url";
 
 import auditAge from "./auditAge.mjs";
 
+/**
+ * Adds `auditAge` tests.
+ * @param {import("test-director").default} tests Test director.
+ */
 export default (tests) => {
   tests.add(
     "`auditAge` with argument 1 `packageDirPath` not a string.",
     async () => {
       await rejects(
-        auditAge(true),
+        auditAge(
+          // @ts-expect-error Testing invalid.
+          true
+        ),
         new TypeError("Argument 1 `packageDirPath` must be a string.")
       );
     }

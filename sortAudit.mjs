@@ -1,3 +1,5 @@
+// @ts-check
+
 import comparableAuditedPackagePath from "./comparableAuditedPackagePath.mjs";
 
 /**
@@ -6,9 +8,10 @@ import comparableAuditedPackagePath from "./comparableAuditedPackagePath.mjs";
  * lack thereof), by path in alphabetical ascending order. This ensures a user
  * investigating a recent change in behavior in their project sees the most
  * relevant results at the start of upwards scrolling terminal output.
- * @param {Audit} audit Audit.
- * @returns {Audit} Audit mutated, sorted.
- * @ignore
+ * @param {Array<import("./auditAge.mjs").AuditedPackage>} audit Installed
+ *   package age audits.
+ * @returns {Array<import("./auditAge.mjs").AuditedPackage>} Installed package
+ *   age audits mutated to be sorted.
  */
 export default function sortAudit(audit) {
   if (!Array.isArray(audit))
@@ -29,6 +32,6 @@ export default function sortAudit(audit) {
       ? // Move left item before the right item without date published.
         -1
       : // Sort items by date published in ascending order.
-        a.datePublished - b.datePublished
+        a.datePublished.getTime() - b.datePublished.getTime()
   );
 }

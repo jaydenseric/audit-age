@@ -1,3 +1,5 @@
+// @ts-check
+
 import reportCliError from "../../../reportCliError.mjs";
 
 const error = new Error("Message.");

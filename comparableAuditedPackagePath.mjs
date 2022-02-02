@@ -1,11 +1,11 @@
+// @ts-check
+
 /**
  * Converts an audited package’s path into a string suitable for sort
  * comparison.
- * @kind function
- * @name comparableAuditedPackagePath
- * @param {AuditedPackagePath} path Path within installed packages.
+ * @param {import("./auditAge.mjs").InstalledPackagePath} path Path within
+ *   installed packages.
  * @returns {string} Comparable string.
- * @ignore
  */
 export default function comparableAuditedPackagePath(path) {
   if (!Array.isArray(path))

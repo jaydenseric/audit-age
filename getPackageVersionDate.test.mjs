@@ -1,14 +1,24 @@
+// @ts-check
+
 import { deepStrictEqual, rejects } from "assert";
 import { fileURLToPath } from "url";
 
 import getPackageVersionDate from "./getPackageVersionDate.mjs";
 
+/**
+ * Adds `getPackageVersionDate` tests.
+ * @param {import("test-director").default} tests Test director.
+ */
 export default (tests) => {
   tests.add(
     "`getPackageVersionDate` with argument 1 `name` not a string.",
     async () => {
       await rejects(
-        getPackageVersionDate(true),
+        getPackageVersionDate(
+          // @ts-expect-error Testing invalid.
+          true,
+          "1.0.0"
+        ),
         new TypeError("Argument 1 `name` must be a string.")
       );
     }
@@ -18,7 +28,11 @@ export default (tests) => {
     "`getPackageVersionDate` with argument 2 `version` not a string.",
     async () => {
       await rejects(
-        getPackageVersionDate("audit-age", true),
+        getPackageVersionDate(
+          "audit-age",
+          // @ts-expect-error Testing invalid.
+          true
+        ),
         new TypeError("Argument 2 `version` must be a string.")
       );
     }
@@ -28,7 +42,12 @@ export default (tests) => {
     "`getPackageVersionDate` with argument 3 `cwd` not a string.",
     async () => {
       await rejects(
-        getPackageVersionDate("audit-age", "0.1.0", true),
+        getPackageVersionDate(
+          "audit-age",
+          "0.1.0",
+          // @ts-expect-error Testing invalid.
+          true
+        ),
         new TypeError("Argument 3 `cwd` must be a string.")
       );
     }

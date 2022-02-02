@@ -1,3 +1,5 @@
+// @ts-check
+
 import TestDirector from "test-director";
 
 import test_cli_audit_age from "./audit-age.test.mjs";

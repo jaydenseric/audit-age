@@ -1,15 +1,14 @@
-import kleur from "kleur";
+// @ts-check
+
+import { bold, red } from "kleur/colors";
 import { inspect } from "util";
 
 import errorConsole from "./errorConsole.mjs";
 
 /**
  * Reports a CLI error via the process `stderr`.
- * @kind function
- * @name reportCliError
  * @param {string} cliDescription CLI description.
- * @param {*} error Error to report.
- * @ignore
+ * @param {unknown} error Error to report.
  */
 export default function reportCliError(cliDescription, error) {
   if (typeof cliDescription !== "string")
@@ -17,17 +16,17 @@ export default function reportCliError(cliDescription, error) {
 
   errorConsole.group(
     // Whitespace blank lines shouldn’t have redundant indentation or color.
-    `\n${kleur.bold().red(`Error running ${cliDescription}:`)}\n`
+    `\n${bold(red(`Error running ${cliDescription}:`))}\n`
   );
 
   errorConsole.error(
-    kleur.red(
+    red(
       error instanceof Error
         ? // Rarely, an error doesn’t have a stack. In that case, the standard
-          // `toString` method returns the error’s `name` + `: ` + the `message`.
-          // This is consistent with the first part of a standard Node.js
-          // error’s `stack`.
-          error.stack || error
+          // `toString` method returns the error’s `name` + `: ` + the
+          // `message`. This is consistent with the first part of a standard
+          // Node.js error’s `stack`.
+          error.stack || error.toString()
         : inspect(error)
     )
   );

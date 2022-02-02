@@ -1,5 +1,5 @@
 
-[1m[31mError running audit-age:[22m[39m
+[1m[31mError running audit-age:[39m[22m
 
   [31mError: Failed to list installed npm packages.
       <stack trace>

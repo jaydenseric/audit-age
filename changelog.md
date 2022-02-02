@@ -9,11 +9,16 @@
 - Removed `./package` from the package `exports` field; the full `package.json` filename must be used in a `require` path.
 - Public modules are now individually listed in the package `files` and `exports` fields.
 - Shortened public module deep import paths, removing the `/public/`.
+- Implemented TypeScript types via JSDoc comments.
 
 ### Patch
 
 - Simplified package scripts.
 - Simplified dev dependencies and config for ESLint.
+- Removed the [`jsdoc-md`](https://npm.im/jsdoc-md) dev dependency and the related package scripts, replacing the readme “API” section with a manually written “Exports” section.
+- Check TypeScript types via a new package `types` script.
+- Various type safety improvements.
+- Stopped using the [`kleur`](https://npm.im/kleur) chaining API.
 - Use a new [`replace-stack-traces`](https://npm.im/replace-stack-traces) dev dependency in tests.
 - Reorganized the test file structure.
 - Configured Prettier option `singleQuote` to the default, `false`.
