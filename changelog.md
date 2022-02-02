@@ -9,6 +9,7 @@
 - Removed `./package` from the package `exports` field; the full `package.json` filename must be used in a `require` path.
 - Public modules are now individually listed in the package `files` and `exports` fields.
 - Shortened public module deep import paths, removing the `/public/`.
+- Removed the package main index module; deep imports must be used.
 - Implemented TypeScript types via JSDoc comments.
 
 ### Patch

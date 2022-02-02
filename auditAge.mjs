@@ -11,16 +11,6 @@ import sortAudit from "./sortAudit.mjs";
  *   path, defaulting to `process.cwd()`.
  * @returns {Promise<Array<AuditedPackage>>} Resolves installed package age
  *   audits.
- * @example
- * Ways to `import`:
- *
- * ```js
- * import { auditAge } from "audit-age";
- * ```
- *
- * ```js
- * import auditAge from "audit-age/auditAge.mjs";
- * ```
  */
 export default async function auditAge(packageDirPath = process.cwd()) {
   if (typeof packageDirPath !== "string")

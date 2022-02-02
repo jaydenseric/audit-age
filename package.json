@@ -28,17 +28,13 @@
     "errorConsole.mjs",
     "execFilePromise.mjs",
     "getPackageVersionDate.mjs",
-    "index.mjs",
     "isDirectoryPath.mjs",
     "reportCliError.mjs",
     "sortAudit.mjs"
   ],
   "sideEffects": false,
-  "main": "./index.mjs",
   "exports": {
-    ".": "./index.mjs",
     "./auditAge.mjs": "./auditAge.mjs",
-    "./index.mjs": "./index.mjs",
     "./package.json": "./package.json"
   },
   "bin": {
