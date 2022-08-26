@@ -4,7 +4,7 @@ import { strictEqual } from "node:assert";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import replaceStackTraces from "replace-stack-traces";
-import snapshot from "snapshot-assertion";
+import assertSnapshot from "snapshot-assertion";
 
 const AUDIT_AGE_CLI_PATH = fileURLToPath(
   new URL("./audit-age.mjs", import.meta.url)
@@ -34,14 +34,14 @@ export default (tests) => {
 
       if (error) throw error;
 
-      await snapshot(
+      await assertSnapshot(
         stdout.toString(),
         new URL(
           "./test/snapshots/audit-age/package-json-broken-stdout.ans",
           import.meta.url
         )
       );
-      await snapshot(
+      await assertSnapshot(
         replaceStackTraces(stderr.toString()),
         new URL(
           "./test/snapshots/audit-age/package-json-broken-stderr.ans",
@@ -74,7 +74,7 @@ export default (tests) => {
 
       if (error) throw error;
 
-      await snapshot(
+      await assertSnapshot(
         stdout.toString(),
         new URL(
           "./test/snapshots/audit-age/package-installed-single-dependency-stdout.ans",
@@ -108,7 +108,7 @@ export default (tests) => {
 
       if (error) throw error;
 
-      await snapshot(
+      await assertSnapshot(
         stdout.toString(),
         new URL(
           "./test/snapshots/audit-age/package-installed-assorted-dependencies-stdout.ans",

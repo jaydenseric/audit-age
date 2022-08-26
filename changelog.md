@@ -22,6 +22,7 @@
   - Updated `actions/setup-node` to v3.
 - Tweaked the package `bin` field.
 - Replaced TypeScript `Record` types with index signatures.
+- Renamed the `snapshot` import to `assertSnapshot` in tests.
 
 ## 2.0.0
 
