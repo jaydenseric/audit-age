@@ -146,5 +146,7 @@ export default async function auditAge(packageDirPath = process.cwd()) {
 
 /**
  * Installed [npm](https://npmjs.com) package dependencies keyed by name.
- * @typedef {Record<string, InstalledPackage>} InstalledPackageDependencies
+ * @typedef {{
+ *   [packageName: string]: InstalledPackage
+ * }} InstalledPackageDependencies
  */
