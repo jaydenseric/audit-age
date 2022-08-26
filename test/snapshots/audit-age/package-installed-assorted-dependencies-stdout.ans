@@ -11,10 +11,10 @@ Auditing the age of installed production npm packages…
 
 [2mtest-director@6.0.0
 └─ [22mkleur@4.1.4
-[31m[2m2021-01-22T20:16:29.328Z[22m (last year)[39m
+[31m[2m2021-01-22T20:16:29.328Z[22m (2 years ago)[39m
 
 [2m[22mtest-director@6.0.0
-[33m[2m2021-04-26T01:59:59.404Z[22m (last year)[39m
+[31m[2m2021-04-26T01:59:59.404Z[22m (last year)[39m
 
 [2m[22mfake-tag@2.0.0
 [90m[2mUnavailable[22m (unknown age)[39m
@@ -22,8 +22,8 @@ Auditing the age of installed production npm packages…
 [2m[22mpackage-not-installed-no-dependencies
 [90m[2mUnavailable[22m (unknown age)[39m
 
-  [31mYear+[39m 3
-   [33mYear[39m 1
+  [31mYear+[39m 4
+   [33mYear[39m 0
   [35mMonth[39m 0
    [36mWeek[39m 0
     [32mDay[39m 0
