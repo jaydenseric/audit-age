@@ -1,6 +1,6 @@
 // @ts-check
 
-import { deepStrictEqual, strictEqual, throws } from "assert";
+import { deepStrictEqual, strictEqual, throws } from "node:assert";
 
 import sortAudit from "./sortAudit.mjs";
 

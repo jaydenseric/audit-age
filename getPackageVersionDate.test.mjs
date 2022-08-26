@@ -1,7 +1,7 @@
 // @ts-check
 
-import { deepStrictEqual, rejects } from "assert";
-import { fileURLToPath } from "url";
+import { deepStrictEqual, rejects } from "node:assert";
+import { fileURLToPath } from "node:url";
 
 import getPackageVersionDate from "./getPackageVersionDate.mjs";
 
