@@ -23,6 +23,10 @@
 - Tweaked the package `bin` field.
 - Replaced TypeScript `Record` types with index signatures.
 - Renamed the `snapshot` import to `assertSnapshot` in tests.
+- Revamped the readme:
+  - Removed the badges.
+  - Added a “Requirements” section.
+  - Added information about TypeScript config and [optimal JavaScript module design](https://jaydenseric.com/blog/optimal-javascript-module-design).
 
 ## 2.0.0
 
